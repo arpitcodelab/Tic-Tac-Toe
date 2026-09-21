@@ -14,8 +14,6 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '44px',
-    height: '44px',
     width: 'clamp(40px, 11vw, 48px)',
     height: 'clamp(40px, 11vw, 48px)',
     borderRadius: 'var(--radius-btn)',
@@ -55,23 +53,13 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
         aria-label="Open menu"
         style={buttonStyle}
       >
-        <Menu size={20} color="var(--accent)" />
         <Menu style={iconStyle} color="var(--accent)" />
       </button>
 
-      {/* Cyberpunk Telemetry Label */}
-      <div
-        aria-hidden="true"
       {/* Main Game Title */}
       <h1
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.2em',
-          color: 'rgba(0, 240, 255, 0.65)',
-          textShadow: '0 0 8px rgba(0, 240, 255, 0.45)',
-          textTransform: 'uppercase',
           fontSize: 'clamp(18px, 5.5vw, 24px)',
           fontWeight: 800,
           letterSpacing: '0.08em',
@@ -84,8 +72,6 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
           whiteSpace: 'nowrap',
         }}
       >
-        Arcade 2099 // Tactical HUD
-      </div>
         Tic-tac-toe
       </h1>
 
@@ -101,7 +87,6 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
             : buttonStyle.boxShadow,
         }}
       >
-        {sound ? <Volume2 size={20} /> : <VolumeX size={20} />}
         {sound ? <Volume2 style={iconStyle} /> : <VolumeX style={iconStyle} />}
       </button>
     </header>
