@@ -11,15 +11,17 @@ export function OpponentSelect(): JSX.Element {
   const getTierColor = (id: string) => {
     switch (id) {
       case 'easy':
+      case 'cpu-easy':
         return '#00F0FF'; // Electric Cyan
       case 'medium':
+      case 'cpu-medium':
         return '#2979FF'; // Neon Blue
       case 'hard':
+      case 'cpu-hard':
         return '#9D4EDD'; // Electric Violet
       case 'expert':
+      case 'cpu-expert':
         return '#FFE600'; // High-Energy Gold
-      case 'two-player':
-        return '#FF007F'; // Neon Magenta
       default:
         return '#00F0FF';
     }
@@ -40,21 +42,7 @@ export function OpponentSelect(): JSX.Element {
         zIndex: 2,
       }}
     >
-      <header style={{ textAlign: 'center', marginBottom: '24px' }}>
-        <div
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '11px',
-            fontWeight: 700,
-            letterSpacing: '0.24em',
-            color: 'rgba(0, 240, 255, 0.75)',
-            textShadow: '0 0 10px rgba(0, 240, 255, 0.5)',
-            textTransform: 'uppercase',
-            marginBottom: '6px',
-          }}
-        >
-          Neural Simulator // Select Mode
-        </div>
+      <header style={{ textAlign: 'center', marginBottom: '28px' }}>
         <h1
           style={{
             fontFamily: 'var(--font-display)',
@@ -74,7 +62,7 @@ export function OpponentSelect(): JSX.Element {
         </h1>
       </header>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
         {OPPONENTS.map((opp) => {
           const record = scores[opp.id as OpponentId] ?? { p1: 0, ties: 0, p2: 0 };
           const hasPlayed = record.p1 > 0 || record.ties > 0 || record.p2 > 0;
@@ -94,21 +82,28 @@ export function OpponentSelect(): JSX.Element {
                 position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                padding: '16px 20px 16px 22px',
+                justifyContent: 'center',
+                padding: '18px 24px',
                 background: isHovered
                   ? 'linear-gradient(145deg, rgba(22, 32, 56, 0.95) 0%, rgba(12, 17, 30, 0.98) 100%)'
                   : 'linear-gradient(145deg, rgba(16, 22, 38, 0.88) 0%, rgba(9, 13, 24, 0.96) 100%)',
-                border: isHovered
-                  ? `1px solid ${tierColor}`
-                  : '1px solid rgba(0, 240, 255, 0.18)',
                 borderTop: isHovered
                   ? '1px solid rgba(255, 255, 255, 0.6)'
                   : '1px solid rgba(255, 255, 255, 0.24)',
+                borderLeft: isHovered
+                  ? `1px solid ${tierColor}`
+                  : '1px solid rgba(0, 240, 255, 0.18)',
+                borderRight: isHovered
+                  ? `1px solid ${tierColor}`
+                  : '1px solid rgba(0, 240, 255, 0.18)',
+                borderBottom: isHovered
+                  ? `1px solid ${tierColor}`
+                  : '1px solid rgba(0, 240, 255, 0.18)',
                 borderRadius: 'var(--radius-card)',
                 boxShadow: isHovered
                   ? `0 6px 24px rgba(0, 0, 0, 0.75), 0 0 18px ${tierColor}55, inset 0 1px 0 rgba(255, 255, 255, 0.2)`
                   : '0 4px 16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
-                textAlign: 'left',
+                textAlign: 'center',
                 cursor: 'pointer',
                 transition: 'all 160ms cubic-bezier(0.16, 1, 0.3, 1)',
                 transform: isHovered ? 'translateY(-2px)' : 'none',
@@ -117,64 +112,40 @@ export function OpponentSelect(): JSX.Element {
                 overflow: 'hidden',
               }}
             >
-              {/* Left Vertical Tier Color Bar */}
-              <div
-                aria-hidden="true"
+              <span
                 style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: '12%',
-                  bottom: '12%',
-                  width: '4px',
-                  borderRadius: '0 2px 2px 0',
-                  background: tierColor,
-                  boxShadow: `0 0 10px ${tierColor}`,
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: isHovered ? tierColor : '#FFFFFF',
+                  letterSpacing: '0.06em',
+                  textShadow: isHovered ? `0 0 12px ${tierColor}` : 'none',
+                  transition: 'color 160ms ease, text-shadow 160ms ease',
                 }}
-              />
+              >
+                {opp.label}
+              </span>
 
-              <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '4px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '17px',
-                      fontWeight: 700,
-                      color: '#FFFFFF',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {opp.label}
-                  </span>
-                  {hasPlayed && (
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '11px',
-                        fontWeight: 700,
-                        color: tierColor,
-                        letterSpacing: '0.08em',
-                        padding: '2px 8px',
-                        borderRadius: '6px',
-                        background: 'rgba(0, 0, 0, 0.5)',
-                        border: `1px solid ${tierColor}44`,
-                        textShadow: `0 0 6px ${tierColor}`,
-                      }}
-                    >
-                      W {record.p1} · T {record.ties} · L {record.p2}
-                    </span>
-                  )}
-                </div>
+              {hasPlayed && (
                 <span
                   style={{
-                    fontSize: '14px',
-                    color: 'var(--text-dim)',
-                    lineHeight: 1.35,
-                    fontWeight: 500,
+                    position: 'absolute',
+                    right: '16px',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    color: tierColor,
+                    letterSpacing: '0.08em',
+                    padding: '2px 8px',
+                    borderRadius: '6px',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: `1px solid ${tierColor}44`,
+                    textShadow: `0 0 6px ${tierColor}`,
                   }}
                 >
-                  {opp.blurb}
+                  W {record.p1} · T {record.ties} · L {record.p2}
                 </span>
-              </div>
+              )}
             </button>
           );
         })}
