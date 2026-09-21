@@ -10,6 +10,7 @@ describe('App Router Test', () => {
 
     expect(screen.getByTestId('app-container')).toBeInTheDocument();
     const playBtn = screen.getByRole('button', { name: /tap to play/i });
+    const playBtn = screen.getByRole('button', { name: /play/i });
     expect(playBtn).toBeInTheDocument();
 
     fireEvent.click(playBtn);

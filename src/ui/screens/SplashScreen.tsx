@@ -40,10 +40,14 @@ export function SplashScreen(): JSX.Element {
           background: 'linear-gradient(145deg, rgba(16, 22, 38, 0.85) 0%, rgba(9, 13, 24, 0.95) 100%)',
           border: '1px solid rgba(0, 240, 255, 0.35)',
           borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+          borderLeft: '1px solid rgba(0, 240, 255, 0.35)',
+          borderRight: '1px solid rgba(0, 240, 255, 0.35)',
+          borderBottom: '1px solid rgba(0, 240, 255, 0.35)',
           borderRadius: '34px',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
           padding: '8px 16px',
           marginBottom: '28px',
+          marginBottom: '32px',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
         }}
@@ -78,10 +82,12 @@ export function SplashScreen(): JSX.Element {
         style={{
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(32px, 8vw, 44px)',
+          fontSize: 'clamp(36px, 9vw, 48px)',
           fontWeight: 900,
           letterSpacing: '0.06em',
           color: '#FFFFFF',
           marginBottom: '14px',
+          marginBottom: '40px',
           textTransform: 'uppercase',
           lineHeight: 1.15,
         }}
@@ -118,9 +124,11 @@ export function SplashScreen(): JSX.Element {
       </p>
 
       {/* Hardware Push-Button */}
+      {/* Hardware Play Button */}
       <button
         type="button"
         onClick={handleTapToPlay}
+        aria-label="Play"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
@@ -131,13 +139,19 @@ export function SplashScreen(): JSX.Element {
             : 'linear-gradient(135deg, rgba(16, 24, 46, 0.9) 0%, rgba(8, 12, 26, 0.96) 100%)',
           color: '#FFFFFF',
           fontSize: '16px',
+          fontSize: '18px',
           fontWeight: 800,
           letterSpacing: '0.14em',
+          letterSpacing: '0.16em',
           textTransform: 'uppercase',
           padding: '16px 44px',
+          padding: '16px 56px',
           borderRadius: 'var(--radius-btn)',
           border: '1px solid rgba(0, 240, 255, 0.55)',
           borderTop: '1px solid rgba(255, 255, 255, 0.65)',
+          borderLeft: '1px solid rgba(0, 240, 255, 0.55)',
+          borderRight: '1px solid rgba(0, 240, 255, 0.55)',
+          borderBottom: '1px solid rgba(0, 240, 255, 0.55)',
           boxShadow: isHovered
             ? '0 0 28px rgba(0, 240, 255, 0.55), 0 8px 24px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
             : '0 0 16px rgba(0, 240, 255, 0.25), 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25)',
@@ -154,6 +168,7 @@ export function SplashScreen(): JSX.Element {
           }}
         >
           Tap to Play
+          Play
         </span>
       </button>
     </div>
