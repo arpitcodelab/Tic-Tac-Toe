@@ -112,7 +112,7 @@ export function HowToPlay({ isOpen, onClose }: HowToPlayProps): JSX.Element | nu
             <strong style={{ color: 'var(--x)' }}>Starter Alternation:</strong> The starting player alternates every round to keep gameplay fair.
           </li>
           <li>
-            <strong style={{ color: 'var(--x)' }}>Opponents:</strong> Choose between 4 computer difficulty levels (Easy, Medium, Hard, and unbeatable Expert).
+            <strong style={{ color: 'var(--x)' }}>Opponents:</strong> Choose between 3 computer difficulty levels (Easy, Medium, and Hard).
           </li>
           <li>
             <strong style={{ color: 'var(--x)' }}>Scores:</strong> Scores are tracked independently for each opponent and saved on your device.
