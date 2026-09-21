@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { Menu, Volume2, VolumeX } from 'lucide-react';
 import { useGameStore } from '../../store/gameStore';
+import { OPPONENTS } from '../../core/config';
 
 interface TopBarProps {
   onOpenMenu: () => void;
@@ -9,6 +10,10 @@ interface TopBarProps {
 export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
   const sound = useGameStore((s) => s.settings.sound);
   const toggleSound = useGameStore((s) => s.toggleSound);
+  const opponent = useGameStore((s) => s.opponent);
+
+  const opponentInfo = OPPONENTS.find((o) => o.id === opponent);
+  const difficultyLabel = opponentInfo?.label ?? 'Easy';
 
   const buttonStyle = {
     display: 'flex',
@@ -56,24 +61,40 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
         <Menu style={iconStyle} color="var(--accent)" />
       </button>
 
-      {/* Main Game Title */}
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(18px, 5.5vw, 24px)',
-          fontWeight: 800,
-          letterSpacing: '0.08em',
-          color: '#FFFFFF',
-          textShadow: '0 0 12px rgba(0, 240, 255, 0.75), 0 0 24px rgba(0, 240, 255, 0.35)',
-          margin: 0,
-          padding: '0 8px',
-          textAlign: 'center',
-          userSelect: 'none',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        Tic-tac-toe
-      </h1>
+      {/* Main Game Title & Difficulty on Top */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(18px, 5.5vw, 24px)',
+            fontWeight: 800,
+            letterSpacing: '0.08em',
+            color: '#FFFFFF',
+            textShadow: '0 0 12px rgba(0, 240, 255, 0.75), 0 0 24px rgba(0, 240, 255, 0.35)',
+            margin: 0,
+            padding: '0 8px',
+            textAlign: 'center',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+            lineHeight: 1.2,
+          }}
+        >
+          Tic-tac-toe
+        </h1>
+        <span
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '11px',
+            fontWeight: 700,
+            color: 'var(--accent)',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            textShadow: '0 0 8px rgba(0, 240, 255, 0.6)',
+          }}
+        >
+          {difficultyLabel}
+        </span>
+      </div>
 
       <button
         type="button"

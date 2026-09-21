@@ -19,15 +19,19 @@ export function SplashScreen(): JSX.Element {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100%',
+        flex: 1,
         width: '100%',
-        padding: '24px',
+        height: '100%',
+        padding: '24px 16px',
         textAlign: 'center',
         boxSizing: 'border-box',
         position: 'relative',
         zIndex: 2,
+        margin: 'auto',
       }}
     >
+      <div className="cyber-scan-beam" aria-hidden="true" />
+
       {/* Holographic Dual Mark Icon Chamber */}
       <div
         style={{

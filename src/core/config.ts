@@ -15,5 +15,6 @@ export const OPPONENTS = [
   { id: 'cpu-easy',   label: 'Easy',      blurb: 'Relaxed and beatable' },
   { id: 'cpu-medium', label: 'Medium',    blurb: 'Watch your step' },
   { id: 'cpu-hard',   label: 'Hard',      blurb: 'Blocks and attacks' },
+  { id: 'cpu-expert', label: 'Expert',    blurb: 'Perfect play. Can you tie?' },
 ] as const;
 

@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
-import { X, RotateCcw, Users, HelpCircle } from 'lucide-react';
+import { X, RotateCcw, HelpCircle } from 'lucide-react';
 import { useGameStore } from '../../store/gameStore';
+import { OPPONENTS } from '../../core/config';
 
 interface MenuDrawerProps {
   isOpen: boolean;
@@ -15,9 +16,13 @@ export function MenuDrawer({
   onOpenResetConfirm,
   onOpenHowToPlay,
 }: MenuDrawerProps): JSX.Element | null {
+  const opponent = useGameStore((s) => s.opponent);
   const changeOpponent = useGameStore((s) => s.changeOpponent);
 
   if (!isOpen) return null;
+
+  const opponentInfo = OPPONENTS.find((o) => o.id === opponent);
+  const difficultyLabel = opponentInfo?.label ?? 'Easy';
 
   const itemButtonStyle = {
     display: 'flex',
@@ -69,33 +74,19 @@ export function MenuDrawer({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <div>
-            <div
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '10px',
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                color: 'rgba(0, 240, 255, 0.7)',
-                textTransform: 'uppercase',
-              }}
-            >
-              Control Panel
-            </div>
-            <span
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '20px',
-                fontWeight: 800,
-                color: '#FFFFFF',
-                letterSpacing: '0.06em',
-                textShadow: '0 0 10px rgba(0, 240, 255, 0.6)',
-              }}
-            >
-              Menu
-            </span>
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+          <span
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '22px',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '0.06em',
+              textShadow: '0 0 10px rgba(0, 240, 255, 0.6)',
+            }}
+          >
+            Menu
+          </span>
 
           <button
             type="button"
@@ -112,9 +103,82 @@ export function MenuDrawer({
               border: '1px solid rgba(0, 240, 255, 0.3)',
               color: 'var(--text)',
               cursor: 'pointer',
+              minHeight: '36px',
+              minWidth: '36px',
             }}
           >
             <X size={18} />
+          </button>
+        </div>
+
+        {/* Current Difficulty Card on Top */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '12px 14px',
+            marginBottom: '10px',
+            borderRadius: 'var(--radius-btn)',
+            background: 'linear-gradient(145deg, rgba(0, 240, 255, 0.12) 0%, rgba(121, 40, 202, 0.1) 100%)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.25)',
+            borderLeft: '1px solid rgba(0, 240, 255, 0.35)',
+            borderRight: '1px solid rgba(0, 240, 255, 0.35)',
+            borderBottom: '1px solid rgba(0, 240, 255, 0.35)',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px rgba(0, 240, 255, 0.15)',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <span
+              style={{
+                fontSize: '11px',
+                color: 'var(--text-dim)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                fontFamily: 'var(--font-display)',
+                fontWeight: 700,
+              }}
+            >
+              Difficulty
+            </span>
+            <span
+              style={{
+                fontSize: '16px',
+                fontWeight: 800,
+                color: 'var(--accent)',
+                textShadow: '0 0 8px rgba(0, 240, 255, 0.65)',
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '0.04em',
+              }}
+            >
+              {difficultyLabel}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              changeOpponent();
+            }}
+            style={{
+              padding: '6px 14px',
+              borderRadius: '6px',
+              background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(121, 40, 202, 0.2) 100%)',
+              border: '1px solid rgba(0, 240, 255, 0.5)',
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-display)',
+              fontSize: '11px',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              minHeight: 'auto',
+              minWidth: 'auto',
+              boxShadow: '0 0 10px rgba(0, 240, 255, 0.25)',
+            }}
+          >
+            Change
           </button>
         </div>
 
@@ -128,18 +192,6 @@ export function MenuDrawer({
         >
           <RotateCcw size={18} color="var(--x)" />
           Reset Scores
-        </button>
-
-        <button
-          type="button"
-          onClick={() => {
-            onClose();
-            changeOpponent();
-          }}
-          style={itemButtonStyle}
-        >
-          <Users size={18} color="var(--accent)" />
-          Change Opponent
         </button>
 
         <button

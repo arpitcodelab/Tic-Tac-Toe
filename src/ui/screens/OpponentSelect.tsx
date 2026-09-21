@@ -5,6 +5,7 @@ import type { OpponentId } from '../../core/types';
 
 export function OpponentSelect(): JSX.Element {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const scores = useGameStore((s) => s.scores);
   const selectOpponent = useGameStore((s) => s.selectOpponent);
 
   const getTierColor = (id: string) => {
@@ -63,6 +64,8 @@ export function OpponentSelect(): JSX.Element {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
         {OPPONENTS.map((opp) => {
+          const record = scores[opp.id as OpponentId] ?? { p1: 0, ties: 0, p2: 0 };
+          const hasPlayed = record.p1 > 0 || record.ties > 0 || record.p2 > 0;
           const tierColor = getTierColor(opp.id);
           const isHovered = hoveredId === opp.id;
 
@@ -122,6 +125,27 @@ export function OpponentSelect(): JSX.Element {
               >
                 {opp.label}
               </span>
+
+              {hasPlayed && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    right: '16px',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    color: tierColor,
+                    letterSpacing: '0.08em',
+                    padding: '2px 8px',
+                    borderRadius: '6px',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: `1px solid ${tierColor}44`,
+                    textShadow: `0 0 6px ${tierColor}`,
+                  }}
+                >
+                  W {record.p1} · T {record.ties} · L {record.p2}
+                </span>
+              )}
             </button>
           );
         })}
