@@ -14,8 +14,8 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '44px',
-    height: '44px',
+    width: 'clamp(40px, 11vw, 48px)',
+    height: 'clamp(40px, 11vw, 48px)',
     borderRadius: 'var(--radius-btn)',
     background: 'linear-gradient(145deg, rgba(20, 26, 46, 0.88) 0%, rgba(10, 14, 26, 0.96) 100%)',
     borderTop: '1px solid rgba(255, 255, 255, 0.35)',
@@ -27,6 +27,12 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
     WebkitBackdropFilter: 'blur(12px)',
     color: 'var(--text)',
     transition: 'all 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+    flexShrink: 0,
+  };
+
+  const iconStyle = {
+    width: 'clamp(20px, 5.5vw, 24px)',
+    height: 'clamp(20px, 5.5vw, 24px)',
   };
 
   return (
@@ -47,25 +53,27 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
         aria-label="Open menu"
         style={buttonStyle}
       >
-        <Menu size={20} color="var(--accent)" />
+        <Menu style={iconStyle} color="var(--accent)" />
       </button>
 
-      {/* Cyberpunk Telemetry Label */}
-      <div
-        aria-hidden="true"
+      {/* Main Game Title */}
+      <h1
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.2em',
-          color: 'rgba(0, 240, 255, 0.65)',
-          textShadow: '0 0 8px rgba(0, 240, 255, 0.45)',
-          textTransform: 'uppercase',
+          fontSize: 'clamp(18px, 5.5vw, 24px)',
+          fontWeight: 800,
+          letterSpacing: '0.08em',
+          color: '#FFFFFF',
+          textShadow: '0 0 12px rgba(0, 240, 255, 0.75), 0 0 24px rgba(0, 240, 255, 0.35)',
+          margin: 0,
+          padding: '0 8px',
+          textAlign: 'center',
           userSelect: 'none',
+          whiteSpace: 'nowrap',
         }}
       >
-        Arcade 2099 // Tactical HUD
-      </div>
+        Tic-tac-toe
+      </h1>
 
       <button
         type="button"
@@ -79,7 +87,7 @@ export function TopBar({ onOpenMenu }: TopBarProps): JSX.Element {
             : buttonStyle.boxShadow,
         }}
       >
-        {sound ? <Volume2 size={20} /> : <VolumeX size={20} />}
+        {sound ? <Volume2 style={iconStyle} /> : <VolumeX style={iconStyle} />}
       </button>
     </header>
   );
