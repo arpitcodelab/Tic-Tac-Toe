@@ -38,7 +38,6 @@ export function SplashScreen(): JSX.Element {
           width: '120px',
           height: '68px',
           background: 'linear-gradient(145deg, rgba(16, 22, 38, 0.85) 0%, rgba(9, 13, 24, 0.95) 100%)',
-          border: '1px solid rgba(0, 240, 255, 0.35)',
           borderTop: '1px solid rgba(255, 255, 255, 0.4)',
           borderLeft: '1px solid rgba(0, 240, 255, 0.35)',
           borderRight: '1px solid rgba(0, 240, 255, 0.35)',
@@ -46,7 +45,6 @@ export function SplashScreen(): JSX.Element {
           borderRadius: '34px',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
           padding: '8px 16px',
-          marginBottom: '28px',
           marginBottom: '32px',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
@@ -61,32 +59,14 @@ export function SplashScreen(): JSX.Element {
         </div>
       </div>
 
-      {/* Cyber Subtitle Badge */}
-      <div
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.24em',
-          color: 'rgba(0, 240, 255, 0.75)',
-          textShadow: '0 0 10px rgba(0, 240, 255, 0.5)',
-          textTransform: 'uppercase',
-          marginBottom: '10px',
-        }}
-      >
-        Arcade Protocol 2099 // Tactical Neural Core
-      </div>
-
       {/* Luminous Arcade Title */}
       <h1
         style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(32px, 8vw, 44px)',
           fontSize: 'clamp(36px, 9vw, 48px)',
           fontWeight: 900,
           letterSpacing: '0.06em',
           color: '#FFFFFF',
-          marginBottom: '14px',
           marginBottom: '40px',
           textTransform: 'uppercase',
           lineHeight: 1.15,
@@ -110,20 +90,6 @@ export function SplashScreen(): JSX.Element {
         </span>
       </h1>
 
-      <p
-        style={{
-          fontSize: '16px',
-          color: 'var(--text-dim)',
-          maxWidth: '340px',
-          marginBottom: '36px',
-          lineHeight: 1.5,
-          fontWeight: 500,
-        }}
-      >
-        Luxury cyberpunk arcade simulation featuring 4 AI neural difficulty tiers.
-      </p>
-
-      {/* Hardware Push-Button */}
       {/* Hardware Play Button */}
       <button
         type="button"
@@ -138,16 +104,12 @@ export function SplashScreen(): JSX.Element {
             ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.28) 0%, rgba(121, 40, 202, 0.28) 100%)'
             : 'linear-gradient(135deg, rgba(16, 24, 46, 0.9) 0%, rgba(8, 12, 26, 0.96) 100%)',
           color: '#FFFFFF',
-          fontSize: '16px',
           fontSize: '18px',
           fontWeight: 800,
-          letterSpacing: '0.14em',
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
-          padding: '16px 44px',
           padding: '16px 56px',
           borderRadius: 'var(--radius-btn)',
-          border: '1px solid rgba(0, 240, 255, 0.55)',
           borderTop: '1px solid rgba(255, 255, 255, 0.65)',
           borderLeft: '1px solid rgba(0, 240, 255, 0.55)',
           borderRight: '1px solid rgba(0, 240, 255, 0.55)',
@@ -167,7 +129,6 @@ export function SplashScreen(): JSX.Element {
             textShadow: '0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4)',
           }}
         >
-          Tap to Play
           Play
         </span>
       </button>
