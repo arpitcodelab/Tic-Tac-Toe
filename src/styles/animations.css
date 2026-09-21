@@ -1,0 +1,102 @@
+/* SVG Stroke animations for Marks */
+.stroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw var(--mark-ms, 250ms) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stroke-second {
+  animation-delay: 110ms;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Win Line Strike Laser Animation */
+.win-strike {
+  stroke: var(--win);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px #ffe600) drop-shadow(0 0 30px rgba(255, 230, 0, 0.8));
+  animation: strike var(--line-ms, 400ms) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes strike {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Luminous Pulse for Active Turn & Winning Cells */
+@keyframes cyber-pulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.35), inset 0 0 10px rgba(0, 240, 255, 0.2);
+    border-color: rgba(0, 240, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 240, 255, 0.65), inset 0 0 18px rgba(0, 240, 255, 0.35);
+    border-color: rgba(0, 240, 255, 0.9);
+  }
+}
+
+@keyframes win-cell-pulse {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(255, 230, 0, 0.45), inset 0 0 14px rgba(255, 230, 0, 0.3);
+    border-color: rgba(255, 230, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(255, 230, 0, 0.85), inset 0 0 24px rgba(255, 230, 0, 0.55);
+    border-color: rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes holographic-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* UI Transitions */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--overlay-ms, 250ms) ease-out, transform var(--overlay-ms, 250ms) ease-out;
+}
+
+/* Reduced motion preference override */
+@media (prefers-reduced-motion: reduce) {
+  .stroke,
+  .win-strike {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
