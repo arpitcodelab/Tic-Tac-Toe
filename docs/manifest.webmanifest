@@ -1,0 +1,1 @@
+{"name":"Tic Tac Toe","short_name":"TicTacToe","description":"A polished, offline-ready Tic Tac Toe web game.","start_url":"./","display":"standalone","background_color":"#F6F7FB","theme_color":"#5B6CFF","lang":"en","scope":"./","orientation":"any","icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
